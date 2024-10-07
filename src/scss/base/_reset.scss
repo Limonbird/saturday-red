@@ -1,0 +1,37 @@
+// // @NOTE: более полный набор свойств для reset можно взять в gists. Либо см последний новый проект.
+// // Еще в _reboot-е от бутстрапа. Можно установить пакет в проект и там поискать. Там будет актуальный reset.
+// // Также в статье: https://habr.com/ru/articles/420539/ с подробным разбором (не со всем согласна, не использовать бездумно)
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  scrollbar-gutter: stable; // если будет использоваться overflow: hidden для body (напр., при модальном окне)
+}
+
+body {
+  margin: 0;
+
+  &.scroll-lock {
+    overflow: hidden;
+  }
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+// button {
+//   font-family: inherit;
+
+//   &:not(:disabled) {
+//     cursor: pointer;
+//   }
+// }

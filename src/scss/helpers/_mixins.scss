@@ -1,0 +1,54 @@
+@mixin list-unstyled {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@mixin image {
+  display: block; // чтобы у <picture> высота была по картинке, а не инлайновая
+  height: auto;
+  max-width: 100%;
+  object-fit: cover;
+}
+
+// @mixin bg-circle - для кружочка вокруг какого-нибудь элемента
+// $size - высота и ширина круга
+@mixin bg-circle($size: 45px, $bg-color: rgba($black, 0.2)) {
+  align-items: center;
+  background-color: $bg-color;
+  border-radius: 50%;
+  display: flex;
+  height: $size;
+  justify-content: center;
+  width: $size;
+}
+
+// @mixin anchor-margin - для отсупа у якоря, чтобы sticky шапка не закрывала верхнюю часть контента
+// $height - высота шапки или высота, на которую надо "отмотать"
+@mixin anchor-margin($height: 90px) {
+  padding-top: $height;
+  margin-top: $height * -1;
+  background-clip: content-box;
+}
+
+// @TODO: возможно вынести миксины в отд. папку, когда их станет несколько
+@mixin breakpoint-up($breakpoint-name) {
+  @media (min-width: calc((map-get($breakpoints, $breakpoint-name)) * 1px)) {
+    @content;
+  }
+}
+
+@mixin breakpoint-down($breakpoint-name) {
+  @media (max-width: calc((map-get($breakpoints, $breakpoint-name)) * 1px)) {
+    @content;
+  }
+}
+
+// @mixin any-hover - добавлять свойства ховера только для тех устройств, которые его поддерживают
+@mixin any-hover {
+  @media (any-hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+}

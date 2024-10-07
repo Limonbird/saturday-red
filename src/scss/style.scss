@@ -1,0 +1,719 @@
+@use "sass:math";
+
+// helpers
+@import "helpers/variables";
+@import "helpers/mixins";
+
+// vendors - располагать ниже helpers
+
+// base - располагать ниже vendors
+@import "base/fonts";
+@import "base/reset";
+
+// layout
+@import "layout/template/container";
+
+// components
+// @import "components/button";
+// @import "components/popup";
+// @import "components/modal";
+
+$white: #fff;
+$black: #000;
+
+// page
+
+.saturday-red {
+  // @TODO: для адаптивов перепроверить фон стрелки и текст Миллион
+  background: #c8020d radial-gradient(50% 50% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+  color: $white;
+  font-family: "Oswald", sans-serif;
+  font-size: 25px;
+  line-height: 1.47;
+  position: relative;
+  z-index: 1;
+
+  &:before {
+    background-image: url("../assets/images/saturday-red-bg.png");
+    background-position: top center;
+    background-size: auto 100%;
+    inset: 0;
+    z-index: -1;
+    content: "";
+    position: absolute;
+    background-repeat: no-repeat;
+  }
+
+  @include breakpoint-up(xl) {
+  }
+
+  @include breakpoint-up(xxl) {
+  }
+}
+
+.button {
+  text-decoration: none;
+  color: $white;
+  border-radius: 100px;
+  border: none;
+  display: inline-block;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.saturday-red-header {
+  margin-bottom: 122px;
+
+  @include breakpoint-up(xxl) {
+    margin-bottom: 57px;
+  }
+
+  @include breakpoint-up(xxl) {
+    margin-bottom: 31px;
+  }
+
+  &__body {
+    padding-top: 30px;
+    text-align: center;
+
+    @include breakpoint-up(lg) {
+      padding-top: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+  }
+
+  &__logo {
+    width: 88px;
+    height: 58px;
+
+    @include breakpoint-up(lg) {
+      width: 160px;
+      height: 104px;
+    }
+
+    @include breakpoint-up(xxl) {
+      width: 200px;
+      height: 130px;
+    }
+  }
+
+  &__action {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    width: 100vw;
+    padding: 15px 0;
+    backdrop-filter: brightness(65%) blur(10px);
+
+    @include breakpoint-up(lg) {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      max-width: 952px;
+      bottom: unset;
+      left: unset;
+      backdrop-filter: none;
+    }
+
+    @include breakpoint-up(xl) {
+      max-width: 1044px;
+    }
+
+    @include breakpoint-up(xxl) {
+      max-width: 1280px;
+    }
+
+    &.to-top {
+      top: 0;
+    }
+  }
+
+  &__button {
+    font-size: 18px;
+    padding: 7px 49px 13px;
+    transition: 75ms ease;
+
+    &--signup {
+      position: relative;
+      background-color: #7a1c1f;
+
+      &::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        inset: -1px;
+        padding: 5px;
+        border-radius: 100px;
+        background: linear-gradient(99.75deg, #ff3a20 11.05%, #840007 54.57%);
+        mask: linear-gradient(#000 0 0) exclude, linear-gradient(#000 0 0) content-box;
+
+        @include breakpoint-up(lg) {
+        }
+      }
+
+      @include any-hover {
+        background-color: #f41c00;
+      }
+    }
+
+    &--login {
+      background-color: #f41c00;
+
+      @include any-hover {
+        background-color: #f40000;
+        box-shadow: 1px 1px 1px 0px rgba($white, 0.5) inset, 0px 0px 5px 1px #fe4128;
+      }
+    }
+  }
+}
+
+.saturday-red-intro {
+  margin-bottom: 214px;
+
+  @include breakpoint-up(xl) {
+    margin-bottom: 110px;
+  }
+
+  @include breakpoint-up(xxl) {
+    margin-bottom: 90px;
+  }
+
+  &__body {
+    text-align: center;
+    position: relative;
+
+    @include breakpoint-up(xl) {
+      width: 961px;
+      margin: 0 auto;
+    }
+
+    @include breakpoint-up(xl) {
+      &::before,
+      &::after {
+        position: absolute;
+        content: "";
+        width: 118px;
+        height: 132px;
+        background-image: url("../assets/images/saturday-red-pointer.svg");
+        background-repeat: no-repeat;
+        background-size: 100%;
+        top: 10px;
+      }
+
+      &::before {
+        left: -170px;
+      }
+
+      &::after {
+        transform: rotate(90deg);
+        right: -170px;
+      }
+    }
+  }
+
+  &__title {
+    font-size: 56px;
+    line-height: 61px;
+    font-weight: bold;
+    margin-bottom: 17px;
+
+    @include breakpoint-up(xl) {
+      font-size: 120px;
+      line-height: 132px;
+      padding: 0 30px;
+      margin-bottom: 28px;
+    }
+  }
+
+  &__subtitle {
+    font-size: 18px;
+    margin-bottom: 70px;
+    padding: 0 40px;
+
+    @include breakpoint-up(xl) {
+      font-size: 35px;
+      margin-bottom: 50px;
+      padding: 0;
+    }
+  }
+
+  &__button {
+    background: linear-gradient(90deg, #ff3a20 0%, #f41c00 100%);
+    padding: 14px 100px;
+    margin-bottom: 63px;
+    transition: 125ms ease;
+    text-transform: uppercase;
+    font-size: 18px;
+
+    @include breakpoint-up(xl) {
+      font-size: 28px;
+      padding: 19px 74px;
+    }
+
+    @include any-hover {
+      background-color: #f40000;
+      box-shadow: 1px 1px 1px 0px rgba($white, 0.5) inset, 0px 0px 5px 2px #fe4128;
+      transform: scale(1.1);
+    }
+  }
+
+  &__image {
+    display: none;
+
+    @include breakpoint-up(lg) {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+}
+
+.saturday-red-content {
+  margin-bottom: 75px;
+  position: relative;
+
+  @include breakpoint-up(xl) {
+    margin-bottom: 120px;
+  }
+
+  @include breakpoint-up(xl) {
+    &::before {
+      background-image: url("../assets/images/saturday-red-million.svg"),
+        url("../assets/images/saturday-red-million.svg");
+      background-position: -10px center, calc(100% + 25px) center;
+      top: -80px;
+      left: 0;
+      bottom: -305px;
+      right: 0;
+      background-size: 220px 816px;
+      content: "";
+      position: absolute;
+      background-repeat: no-repeat;
+      // animation-name: big;
+      // animation-duration: 750ms;
+      // animation-delay: 300ms;
+      // animation-fill-mode: forwards;
+    }
+
+    // @keyframes big {
+    //   from {
+    //     background-size: 0px 0px;
+    //   }
+    //   to {
+    //     background-size: 220px 816px;
+    //   }
+    // }
+  }
+
+  &__body {
+    text-align: center;
+
+    @include breakpoint-up(xxl) {
+      width: 1168px;
+      margin: 0 auto;
+    }
+  }
+
+  &__title {
+    font-size: 30px;
+    line-height: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+
+    @include breakpoint-up(xl) {
+      padding: 0 138px;
+      font-size: 55px;
+      line-height: 66px;
+      margin-bottom: 30px;
+    }
+
+    @include breakpoint-up(xxl) {
+      padding: 0 200px;
+    }
+  }
+
+  & p {
+    margin-bottom: 0;
+    font-size: 14px;
+
+    @include breakpoint-up(xl) {
+      font-size: 25px;
+    }
+  }
+}
+
+.saturday-red-reviews {
+  margin-bottom: 30px;
+
+  @include breakpoint-up(xl) {
+    margin-bottom: 80px;
+  }
+
+  &__body {
+  }
+
+  &__title {
+    font-size: 30px;
+    line-height: 36px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
+
+    @include breakpoint-up(xl) {
+      margin-bottom: 50px;
+      font-size: 55px;
+      line-height: 66px;
+    }
+  }
+
+  &__slider {
+    & .swiper {
+      margin-right: -30px;
+
+      @include breakpoint-up(lg) {
+        margin-right: auto;
+      }
+    }
+  }
+
+  &__slide {
+    padding: 20px 30px 20px 20px;
+    border-radius: 10px;
+    background-color: rgba(#ff3a20, 0.3);
+    position: relative;
+    font-size: 14px;
+
+    @include breakpoint-up(xl) {
+      padding: 20px;
+      font-size: 18px;
+    }
+
+    @include breakpoint-up(xxl) {
+      padding: 20px 70px 20px 20px;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      padding: 1px;
+      border-radius: 100px;
+      border-radius: 10px;
+      background: linear-gradient(99.75deg, #ff3a20 11.05%, rgba(132, 0, 7, 0.01) 54.57%),
+        linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+      mask: linear-gradient(#000 0 0) exclude, linear-gradient(#000 0 0) content-box;
+    }
+  }
+
+  &__stars {
+    margin-top: 30px;
+    display: flex;
+    gap: 5px;
+
+    @include breakpoint-up(xxl) {
+      margin-top: 50px;
+    }
+  }
+
+  &__star {
+    width: 18px;
+    height: 18px;
+
+    @include breakpoint-up(xl) {
+      width: 22px;
+      height: 22px;
+    }
+  }
+
+  &__pag-nav {
+    width: fit-content;
+    margin: 0 auto;
+    position: relative;
+    margin-top: 40px;
+    display: none;
+
+    @include breakpoint-up(lg) {
+      display: block;
+    }
+
+    & .swiper-button-prev {
+      background-image: url("../assets/images/saturday-red-arrow.svg");
+      background-repeat: no-repeat;
+      background-size: 100%;
+      width: 35px;
+      height: 22px;
+      transform: rotate(180deg) translateY(-50%);
+      position: absolute;
+      left: -115px;
+      top: 50%;
+
+      @include breakpoint-up(xxl) {
+        left: -150px;
+      }
+
+      &::after {
+        display: none;
+      }
+    }
+
+    & .swiper-button-next {
+      background-image: url("../assets/images/saturday-red-arrow.svg");
+      background-repeat: no-repeat;
+      background-size: 100%;
+      width: 35px;
+      height: 22px;
+      transform: translateY(50%);
+      position: absolute;
+      right: -115px;
+      top: 50%;
+
+      @include breakpoint-up(xxl) {
+        right: -150px;
+      }
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  &__pagination {
+    position: relative;
+
+    & .swiper-pagination-bullet {
+      background-color: rgba($white, 0.5);
+      opacity: 1;
+      width: 10px;
+      height: 10px;
+      outline: 3.5px solid transparent;
+      transition: 75ms ease;
+      margin: 0 6px !important;
+      outline-offset: -1px;
+    }
+
+    & .swiper-pagination-bullet-active {
+      background-color: #fa1d00;
+      outline: 3.5px solid #fa1d00;
+      width: 10px;
+      height: 10px;
+    }
+  }
+}
+
+.saturday-red-footer {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    content: "";
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(90deg, rgba(250, 29, 0, 0.01) 5.18%, #fa1d00 50.09%, rgba(250, 29, 0, 0.01) 91.72%);
+    top: 0;
+    left: 0;
+  }
+
+  &__body {
+    padding-bottom: 80px;
+    text-align: center;
+    padding-top: 60px;
+
+    @include breakpoint-up(xl) {
+      padding-top: 100px;
+    }
+
+    @include breakpoint-up(xxl) {
+      width: 1088px;
+      margin: 0 auto;
+    }
+  }
+
+  & p {
+    margin-bottom: 0;
+    color: #dfdddd;
+    font-size: 14px;
+
+    @include breakpoint-up(xl) {
+      font-size: 25px;
+    }
+  }
+
+  &__title {
+    font-size: 30px;
+    line-height: 36px;
+    margin-bottom: 20px;
+
+    @include breakpoint-up(xl) {
+      font-size: 55px;
+      line-height: 66px;
+      margin-bottom: 30px;
+    }
+  }
+
+  &__content {
+    margin-bottom: 60px;
+
+    @include breakpoint-up(xl) {
+    }
+  }
+
+  &__link {
+    color: #ff5039;
+    transition: all 125ms ease;
+
+    @include any-hover {
+      color: #ff1e00;
+      text-decoration: none;
+    }
+  }
+
+  &__icons {
+    @include list-unstyled;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    @include breakpoint-up(lg) {
+      flex-direction: row;
+      justify-content: center;
+      gap: 40px;
+    }
+  }
+
+  &__icon {
+    & + & {
+      margin-left: 5px;
+    }
+  }
+}
+
+.saturday-red-modal {
+  width: 420px;
+  border-radius: 20px;
+  border: none;
+  padding: 0;
+  z-index: -1;
+
+  &::backdrop {
+    background: rgba($black, 0.6);
+  }
+
+  &[open] {
+    animation: popup-zoom-in 75ms linear;
+  }
+
+  &__close {
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    display: inline-flex;
+    height: 24px;
+    justify-content: center;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    transition: transform 75ms linear;
+    width: 24px;
+    z-index: 1;
+
+    @include any-hover {
+      transform: scale(1.2);
+    }
+  }
+
+  &__content {
+    padding: 20px 20px 45px;
+  }
+
+  &__title {
+    font-size: 20px !important;
+    line-height: 36px !important;
+    margin-bottom: 30px;
+    text-align: center;
+
+    @include breakpoint-up(xl) {
+      font-size: 30px !important;
+      margin-bottom: 40px;
+    }
+  }
+
+  &__input {
+    font-family: Oswald;
+    width: 100%;
+    border-radius: 100px;
+    background-color: #ebebeb;
+    min-height: 50px;
+    border: 1px solid transparent;
+    padding-left: 30px;
+    font-size: 16px;
+    color: #666666;
+
+    @include breakpoint-up(xl) {
+      font-size: 18px;
+      min-height: 55px;
+    }
+
+    & + & {
+      margin-top: 10px;
+    }
+
+    &:focus-visible {
+      border-color: #333435;
+      outline: none;
+    }
+  }
+
+  &__button {
+    width: 100%;
+    background: linear-gradient(90deg, #ff3a20 0%, #f41c00 100%);
+    padding: 14px 30px;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 7px;
+
+    @include breakpoint-up(xl) {
+      font-size: 25px;
+    }
+
+    @include any-hover {
+      background: linear-gradient(90deg, #ff290d 0%, #aa1501 100%);
+    }
+  }
+
+  &__question {
+    font-size: 16px;
+    color: #fa1d00;
+    text-decoration: none;
+
+    @include breakpoint-up(xl) {
+      font-size: 18px;
+    }
+
+    @include any-hover {
+      color: #ae1602;
+      text-decoration: none;
+    }
+  }
+
+  &--message {
+    text-align: center;
+
+    & .saturday-red-modal__content {
+      padding-bottom: 20px;
+    }
+  }
+}
+
+@keyframes popup-zoom-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

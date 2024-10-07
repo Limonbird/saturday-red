@@ -1,0 +1,98 @@
+.modal {
+  border-radius: 20px;
+  border: none;
+  padding: 0;
+  width: 720px;
+
+  &::backdrop {
+    background: linear-gradient(
+      45deg,
+      rgba(146, 228, 111, 0.6) 0%,
+      rgba(72, 108, 191, 0.6) 50%,
+      rgba(177, 48, 169, 0.6) 100%
+    );
+    backdrop-filter: blur(2px);
+  }
+
+  &[open] {
+    animation: popup-zoom-in 75ms linear;
+  }
+
+  &__body {
+    // если кнопки закрыть (крестик) не будет, то можно overflow и max-height отсюда удалить, тогда вернется дефолтная браузерная логика, когда прокручивается сам <dialog>
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    overflow: auto; // прокручиваем контент тут, чтобы кнопка Закрыть была сверху, относительно .modal
+    max-height: calc(100vh - 150px); // фикс. высота для прокрутки. height: 100% не срабатывает.
+
+    @include breakpoint-up(md) {
+      max-height: calc(100vh - 60px);
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    padding: 60px 30px 45px;
+  }
+
+  &__header {
+    margin-bottom: 30px;
+  }
+
+  &__title {
+    margin-bottom: 5px;
+  }
+
+  &__subtitle {
+    color: $grey;
+    font-size: 12px;
+    margin: 0;
+  }
+
+  &__main {
+    margin-bottom: 30px;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
+  }
+
+  &__picture {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  &__image {
+    @include image;
+    max-height: 100%;
+
+    .modal[open] & {
+      animation: image-zoom-out 750ms linear;
+    }
+  }
+
+  &__close {
+    background-color: transparent;
+    border: none;
+    padding: 10px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    transition: transform 75ms linear;
+    z-index: 1;
+
+    @include any-hover {
+      transform: scale(1.1);
+    }
+  }
+
+  &__icon {
+    @include bg-circle(32px);
+    fill: $white;
+  }
+}
